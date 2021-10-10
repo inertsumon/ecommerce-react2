@@ -21,6 +21,6 @@
 }
 .nav-item {
   display: flex;
-  justify-content: space-between;
-  padding: 0px 60px;
+  justify-content: left;
+  padding-left: 100px;
 }

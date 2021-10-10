@@ -3,7 +3,7 @@ import React from 'react';
 const PlaceOrder = () => {
     return (
         <div>
-            <img src="https://image.shutterstock.com/image-vector/mobile-shopping-app-modern-online-260nw-1543148885.jpg" alt="" />
+            <img src="https://image.freepik.com/free-vector/order-confirmed-concept-illustration_114360-1486.jpg" alt="" />
         </div>
     );
 };
