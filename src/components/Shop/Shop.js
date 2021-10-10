@@ -51,7 +51,7 @@ const Shop = () => {
     return (
         <>
             <div className="search-container">
-                <input
+                <input className="input"
                     type="text"
                     onChange={handleSearch}
                     placeholder="Search Product" />
