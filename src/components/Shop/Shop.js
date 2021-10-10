@@ -10,7 +10,8 @@ const Shop = () => {
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useCart(products);
     const [displayProducts, setDisplayProducts] = useState([]);
-    
+
+
     useEffect(() => {
         fetch('./products.JSON')
             .then(res => res.json())
@@ -20,22 +21,28 @@ const Shop = () => {
             });
     }, []);
 
-
+    const [dstocks, setStocks] = useState([]);
 
     const handleAddToCart = (product) => {
         const exists = cart.find(pd => pd.key === product.key);
         let newCart = [];
+        let newStocks = [];
+
         if (exists) {
-            const rest = cart.filter(pd => pd.key !== product.key);
+            const rest = cart.filter(pd => pd.key !== product.key);            
             exists.quantity = exists.quantity + 1;
             newCart = [...rest, product];
+            newStocks = [exists.quantity];  
+            // console.log(newStocks);
         }
         else {
             product.quantity = 1;
             newCart = [...cart, product];
+            newStocks = [product.quantity]; 
+          
         }
         setCart(newCart);
-        
+        setStocks(newStocks);
         addToDb(product.key);
 
     }
@@ -43,16 +50,24 @@ const Shop = () => {
     const handleSearch = event => {
         const searchText = event.target.value;
 
-        const matchedProducts = products.filter(product => product.name.toLowerCase().includes(searchText.toLowerCase()));
-
+        
+        if (!isNaN(searchText)) {
+            const matchedProducts2 = products.filter(product => product.price.toString().includes(searchText));
+            setDisplayProducts(matchedProducts2);
+        }
+        else {
+            const matchedProducts = products.filter(product => product.name.toLowerCase().includes(searchText.toLowerCase()));
         setDisplayProducts(matchedProducts);
+        }
+        
+        
     }
 
     return (
         <>
             <div className="search-container">
                 <input className="input"
-                    type="text"
+                    type="search"
                     onChange={handleSearch}
                     placeholder="Search Product" />
             </div>
@@ -63,6 +78,7 @@ const Shop = () => {
                             key={product.key}
                             product={product}
                             handleAddToCart={handleAddToCart}
+                            dstocks={dstocks}
                         >
                         </Product>)
                     }

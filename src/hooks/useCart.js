@@ -15,11 +15,11 @@ const useCart = products => {
                 if (addedProduct) {
                     // set quantity
                     const quantity = savedCart[key];
-                    console.log(quantity);
+                   
                     addedProduct.quantity = quantity;
                     storedCart.push(addedProduct);
                 }
-                console.log(addedProduct);
+                
             }
             
             setCart(storedCart);
