@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import initializeAuth from '../../firebase/firebase.initialize';
 import "./login.css";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import { useHistory } from 'react-router-dom';
 initializeAuth();
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
@@ -27,7 +28,12 @@ const  handleGoogleSignIn = () => {
       setUser({})
     })
   }
-   
+  let history = useHistory();
+
+  function handleClick() {
+    history.push("/shop");
+  }
+  
   return (
     
     <div className="login">
@@ -42,6 +48,7 @@ const  handleGoogleSignIn = () => {
           <button onClick={handleGoogleSignIn} className="loginRegisterButton">Google Login</button>
         </div> :
           <button className="loginRegisterButton" onClick={handleSignOut}>SignOut</button>
+        
       }
       
     <div>
@@ -51,8 +58,13 @@ const  handleGoogleSignIn = () => {
             <img src={user.photo} alt=""/>
             <h3>{user.name}</h3>
             <h3>{user.email}</h3>
+            <button className="loginRegisterButton" type="button" onClick={handleClick}>
+      Go home
+    </button>
           </div>
+          
         }
+       
         
       </div>
   </div>
