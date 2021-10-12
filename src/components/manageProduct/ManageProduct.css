@@ -1,4 +1,4 @@
-.product-container {
+.product-container2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 20px;
@@ -16,7 +16,7 @@
   border-radius: 10px;
   padding: 10px;
 }
-.cart-container {
+.cart-container3 {
   width: 400px;
   margin: auto !important;
   background-color: lightsteelblue;

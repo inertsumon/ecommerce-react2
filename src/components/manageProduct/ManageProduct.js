@@ -71,7 +71,7 @@ const ManageProduct = () => {
             
             <>
             <h1>Welcome to Inventory</h1>
-            <div className="product-container">
+            <div className="product-container2">
                 {prod.length>0?
                     prod.map(product => <Inventory
                         product={product}
