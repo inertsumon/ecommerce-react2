@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 import useManageProd from '../../hooks/useManageProd';
-import { addDbProd } from './manageprodDB';
+import Inventory from '../Inventory/Inventory';
+import { addDbProd, getDbProd, removeFromDb } from './manageprodDB';
+import "./ManageProduct.css";
 
 const ManageProduct = () => {
 
     const [prodName, setProdName] = useState("");
     const [prodPrice, setProdPrice] = useState("");
+    const [prodLink, setProdPiclink] = useState("");
     const [prod, setProd] = useManageProd();
     let newProd = [];
     // console.log(prod);
 
-    const handleManageProd = (prodName, prodPrice) => {
+    const handleManageProd = (prodName, prodPrice,prodLink) => {
         const prodObj = {
             name: prodName,
-            price:prodPrice
+            price:prodPrice,
+            image:prodLink
         }
         if (prod.length > 0) {
             let newProdArray = [];
@@ -22,7 +26,7 @@ const ManageProduct = () => {
                 newProdArray = [exists];  
                     
                 }
-                newProd = [prodObj,...newProdArray];   
+                newProd = [...newProdArray,prodObj];   
           
             }
         }
@@ -33,15 +37,42 @@ const ManageProduct = () => {
         setProd(newProd);
         addDbProd(newProd);
     }
+    const handleDelete = (name) => {
+        removeFromDb(name);
+        const exists = getDbProd();
+        const product = JSON.parse(exists);
+        console.log(product);
+        setProd(product);
+    }
+    
 
     return (
         <div>
             <h1>Manage Product</h1>
+            <div className="form">
+            
             <label>Product Name</label>
             <input onChange={event => setProdName(event.target.value)} type="text"/><br/>
             <label>Price</label>
-            <input onChange={event => setProdPrice(event.target.value)} type="text" /><br />
-            <button className="loginRegisterButton" onClick={()=>handleManageProd(prodName,prodPrice)}>Submit</button>
+            <input onChange={event => setProdPrice(event.target.value)} type="number" /><br />
+            <label>Images</label>
+            <input onChange={event => setProdPiclink(event.target.value)} type="text" /><br />
+
+            <button className="loginRegisterButton" onClick={() => handleManageProd(prodName, prodPrice,prodLink)}>Submit</button>
+            </div>
+            
+            <>
+            <h1>Welcome to Inventory</h1>
+            <div className="product-container">
+                {prod.length>0?
+                    prod.map(product => <Inventory
+                        product={product}
+                        handleDelete={handleDelete}
+                    ></Inventory>) :
+                       <></>
+                }
+                </div>
+                </>
         </div>
     );
 };

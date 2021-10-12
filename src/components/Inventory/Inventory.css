@@ -1,0 +1,24 @@
+.inventory-container {
+  border: 1px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 10px;
+}
+.inv-img {
+  height: 200px;
+  width: 200px;
+}
+.loginRegisterButton {
+  background-color: teal;
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  margin-right: 5px !important;
+}
+.inventory-details {
+  margin-left: 10px;
+}

@@ -1,0 +1,18 @@
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  margin: 10px 40px !important;
+  margin-bottom: 100px !important;
+}
+.form {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  align-items: center;
+  background-color: lightsalmon;
+  margin: auto;
+  border-radius: 10px;
+  padding: 10px;
+}

@@ -1,7 +1,7 @@
 
 const addDbProd = (prodObj) => {
   
-  let prod = [prodObj]; 
+  let prod = prodObj; 
 
     updateDbProd(prod);
   }
@@ -12,17 +12,19 @@ const getDbProd = () => localStorage.getItem('prod');
     localStorage.setItem('prod', JSON.stringify(prod));
   }
   
-  // const removeFromDb = email => {
-  //   const exists = getDb();
-  //   if (!exists) {
+  const removeFromDb = name => {
+    const exists = getDbProd();
+    if (!exists) {
   
-  //   }
-  //   else {
-  //     const user = JSON.parse(exists);
-  //     delete user[email];
-  //     updateDb(user);
-  //   }
-  // }
+    }
+    else {
+        const product = JSON.parse(exists);
+        // console.log(product);
+        let index = product.findIndex(x => x.name ==={name});
+        product.splice(name, 1);
+      updateDbProd(product);
+    }
+  }
   
   const getStoredProd = () => {
     const exists = getDbProd();
@@ -33,4 +35,4 @@ const getDbProd = () => localStorage.getItem('prod');
     localStorage.removeItem('prod');
   }
   
-  export { addDbProd, getDbProd, clearTheUser,getStoredProd }
+  export { addDbProd, getDbProd, clearTheUser,getStoredProd,removeFromDb }
