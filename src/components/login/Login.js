@@ -3,13 +3,16 @@ import initializeAuth from '../../firebase/firebase.initialize';
 import "./login.css";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { useHistory } from 'react-router-dom';
+
 initializeAuth();
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
 
 
 const Login = () => {
-  const [user, setUser] = useState({});
+
+const [user, setUser] = useState({});
+
 const  handleGoogleSignIn = () => {
   signInWithPopup(auth, provider)
   .then(result => {
@@ -31,12 +34,13 @@ const  handleGoogleSignIn = () => {
   let history = useHistory();
 
   function handleClick() {
-    history.push("/shop");
+    history.push("/manageproduct");
   }
-  
+
   return (
     
     <div className="login">
+
       {
         !user.name ? <div><span className="loginTitle">Login</span>
         <form className="loginForm">
@@ -59,8 +63,9 @@ const  handleGoogleSignIn = () => {
             <h3>{user.name}</h3>
             <h3>{user.email}</h3>
             <button className="loginRegisterButton" type="button" onClick={handleClick}>
-      Go home
+              Manage Product
     </button>
+           
           </div>
           
         }

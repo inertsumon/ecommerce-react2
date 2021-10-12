@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import Inventory from './components/Inventory/Inventory';
 import Login from './components/login/Login';
+import ManageProduct from './components/manageProduct/ManageProduct';
 import NotFound from './components/NotFound/NotFound';
 import OrderReview from './components/OrderReview/OrderReview';
 import PlaceOrder from './components/PlaceOrder/PlaceOrder';
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route exact path="/login">
             <Login></Login>
+          </Route>
+          <Route exact path="/manageproduct">
+            <ManageProduct></ManageProduct>
           </Route>
           <Route path="*">
             <NotFound></NotFound>
