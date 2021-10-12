@@ -16,3 +16,16 @@
   border-radius: 10px;
   padding: 10px;
 }
+.cart-container {
+  width: 400px;
+  margin: auto !important;
+  background-color: lightsteelblue;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+}
+h2,
+h1 {
+  text-align: center;
+  margin-top: 40px !important;
+}

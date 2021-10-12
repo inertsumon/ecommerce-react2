@@ -3,13 +3,17 @@ import useManageProd from '../../hooks/useManageProd';
 import Inventory from '../Inventory/Inventory';
 import { addDbProd, getDbProd, removeFromDb } from './manageprodDB';
 import "./ManageProduct.css";
+import ProdCart from './ProdCart';
 
 const ManageProduct = () => {
 
     const [prodName, setProdName] = useState("");
     const [prodPrice, setProdPrice] = useState("");
     const [prodLink, setProdPiclink] = useState("");
+
     const [prod, setProd] = useManageProd();
+    const [prodCart, setProdCart] = useState([]);
+
     let newProd = [];
     // console.log(prod);
 
@@ -37,6 +41,7 @@ const ManageProduct = () => {
         setProd(newProd);
         addDbProd(newProd);
     }
+
     const handleDelete = (name) => {
         removeFromDb(name);
         const exists = getDbProd();
@@ -44,7 +49,10 @@ const ManageProduct = () => {
         console.log(product);
         setProd(product);
     }
-    
+    const handleAddCart = (product) => {
+        // console.log(product);
+        setProdCart(product);
+    }
 
     return (
         <div>
@@ -68,9 +76,17 @@ const ManageProduct = () => {
                     prod.map(product => <Inventory
                         product={product}
                         handleDelete={handleDelete}
+                        handleAddCart={handleAddCart}
                     ></Inventory>) :
                        <></>
                 }
+                </div>
+                <div>
+                    {
+                        <ProdCart
+                        prodCart={prodCart}
+                        ></ProdCart>
+                    }
                 </div>
                 </>
         </div>
