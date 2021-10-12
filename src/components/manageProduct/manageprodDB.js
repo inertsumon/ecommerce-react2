@@ -20,8 +20,9 @@ const getDbProd = () => localStorage.getItem('prod');
     else {
         const product = JSON.parse(exists);
         // console.log(product);
-        let index = product.findIndex(x => x.name ==={name});
-        product.splice(name, 1);
+      let index = product.findIndex(x => x.name === name);
+      console.log(index);
+        product.splice(index, 1);
       updateDbProd(product);
     }
   }
